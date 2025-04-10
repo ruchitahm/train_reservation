@@ -1,9 +1,18 @@
 services:
   - type: web
-    name: train-app
+    name: train-reservation
     env: node
     buildCommand: |
       cd frontend && npm install && npm run build
       cd ../server && npm install
     startCommand: node server/index.js
     rootDir: .
+
+  - type: web
+    name: server
+    env: node
+    buildCommand: npm install
+    startCommand: node index.js
+    directory: server
+    plan: free
+    autoDeploy: true
