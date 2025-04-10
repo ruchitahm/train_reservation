@@ -1,5 +1,6 @@
 // controllers/authController.js
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../db');
 const JWT_SECRET = process.env.JWT_SECRET;
