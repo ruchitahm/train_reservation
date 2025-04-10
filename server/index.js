@@ -2,21 +2,24 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+
 require('dotenv').config();
 
+const authRoutes = require('./routes/authRoutes');
+const seatRoutes = require("./routes/seatRoutes");
 
 // API routes here
 app.get('/api/hello', (req, res) => {
     res.json({ message: 'Hello from backend!' });
   });
   
-  // Catch-all to serve React
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-  });
+// Serve React static files
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+});
 
-const authRoutes = require('./routes/authRoutes');
-const seatRoutes = require("./routes/seatRoutes");
 
 app.use(cors());
 app.use(express.json());
