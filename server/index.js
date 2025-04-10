@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 
 require('dotenv').config();
-
+const path = require('path');
 const authRoutes = require('./routes/authRoutes');
 const seatRoutes = require("./routes/seatRoutes");
 
@@ -14,7 +14,6 @@ app.get('/api/hello', (req, res) => {
   });
   
 // Serve React static files
-const path = require('path');
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
